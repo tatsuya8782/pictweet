@@ -3,7 +3,7 @@ class TweetsController < ApplicationController
 	before_action :move_to_index, except: :index
 
 	def index
-	  @tweets = Tweet.order("created_at DESC").page(params[:page]).per(5)
+	  @tweets = Tweet.includes(:user).page(params[:page]).per(5).order("created_at DESC")
 	end
 
 	def new
@@ -18,4 +18,6 @@ class TweetsController < ApplicationController
       params.permit(:name, :image, :text)
     end
     
+
+  
 end
