@@ -28,6 +28,9 @@ cclass TweetsController < ApplicationController
       if tweet.user_id == current_user.id
         tweet.update(tweet_params)
       end
+
+    def show
+    @tweet = Tweet.find(params[:id])
     end
 
     private
