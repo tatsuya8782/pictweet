@@ -1,4 +1,4 @@
-cclass TweetsController < ApplicationController
+class TweetsController < ApplicationController
 
     before_action :move_to_index, except: :index
 
@@ -16,7 +16,7 @@ cclass TweetsController < ApplicationController
     def destroy
       tweet = Tweet.find(params[:id])
       if tweet.user_id == current_user.id
-        tweet.destroy
+         tweet.destroy
       end
     
     def edit
@@ -30,8 +30,8 @@ cclass TweetsController < ApplicationController
       end
 
     def show
-    @tweet = Tweet.find(params[:id])
-    @comments = @tweet.comments.includes(:user)
+     @tweet = Tweet.find(params[:id])
+     @comments = @tweet.comments.includes(:user)
     end
 
     private
@@ -42,4 +42,3 @@ cclass TweetsController < ApplicationController
     def move_to_index
       redirect_to action: :index unless user_signed_in?
     end
-  end
