@@ -1,6 +1,6 @@
 class TweetsController < ApplicationController
 
-    before_action :move_to_index, except: :index
+    before_action :move_to_index, except: [:index, :show]
 
     def index
       @tweets = Tweet.includes(:user).page(params[:page]).per(5).order("created_at DESC")
@@ -42,3 +42,4 @@ class TweetsController < ApplicationController
     def move_to_index
       redirect_to action: :index unless user_signed_in?
     end
+  end
